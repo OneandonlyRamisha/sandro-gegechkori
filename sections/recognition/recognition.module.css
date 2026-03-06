@@ -1,0 +1,85 @@
+.section {
+  background-color: var(--secondary-bg);
+}
+
+.header {
+  font-size: 5.8rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.listOfRecognitions {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 7.4rem;
+}
+
+.quoteContainer {
+  margin-top: 5.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.quote {
+  font-size: 3.2rem;
+  max-width: 60ch;
+  text-align: center;
+}
+
+.author {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--secondary-text);
+  font-family: var(--font-ui);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    font-size: 5.4vw;
+  }
+
+  .quote {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 6.4vw;
+  }
+
+  .listOfRecognitions {
+    margin-top: 4.8rem;
+  }
+
+  .quote {
+    font-size: 2.2rem;
+  }
+
+  .author {
+    font-size: 1.6rem;
+  }
+
+  .quoteContainer {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 7.2vw;
+  }
+
+  .quote {
+    font-size: 1.8rem;
+  }
+
+  .listOfRecognitions {
+    margin-top: 3.2rem;
+    gap: 0;
+  }
+}

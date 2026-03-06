@@ -1,0 +1,157 @@
+.section {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url("/hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+
+  justify-content: center;
+  gap: 2rem;
+}
+
+.header {
+  font-size: 9.4vw;
+  text-transform: uppercase;
+  margin: -2rem 0;
+}
+
+.line {
+  width: 10rem;
+  height: 0.2rem;
+  background-color: var(--accent);
+}
+
+.occupation {
+  font-family: var(--font-ui);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+}
+
+.longerLine {
+  width: 22rem;
+  height: 0.1rem;
+  background-color: var(--accent);
+}
+
+.quote {
+  font-size: 2rem;
+}
+
+.ctaContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.cta {
+  font-size: 2rem;
+  padding: 1.2rem 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  color: var(--accent);
+}
+
+.primaryCta {
+  border: 1px solid var(--accent);
+}
+
+.primaryCta:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+.secondaryCta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s;
+}
+
+.secondaryCta p {
+  font-family: var(--font-ui);
+  color: var(--accent);
+}
+
+.secondaryCta:hover .icon {
+  transform: translateX(0.5rem);
+}
+
+.icon {
+  font-size: 2.6rem;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 12vw;
+    margin: -1.2rem 0;
+  }
+
+  .occupation {
+    font-size: 1.4rem;
+  }
+
+  .quote {
+    font-size: 1.7rem;
+  }
+
+  .cta {
+    font-size: 1.6rem;
+    padding: 1rem 2.2rem;
+  }
+
+  .icon {
+    font-size: 2.2rem;
+  }
+
+  .longerLine {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 14vw;
+    margin: -0.8rem 0;
+  }
+
+  .occupation {
+    font-size: 1.2rem;
+  }
+
+  .line {
+    width: 7rem;
+  }
+
+  .longerLine {
+    width: 12rem;
+  }
+
+  .quote {
+    font-size: 1.5rem;
+  }
+
+  .ctaContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-top: 2.4rem;
+  }
+
+  .cta {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+  }
+
+  .section {
+    gap: 1.4rem;
+  }
+}
