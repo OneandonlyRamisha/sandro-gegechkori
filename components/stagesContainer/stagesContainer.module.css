@@ -9,9 +9,11 @@
 }
 
 .img {
+  /* width: 100%; */
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 65%;
+
+  object-fit: cover;
   opacity: 0.5;
   transition: all 0.3s;
 }

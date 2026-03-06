@@ -1,0 +1,46 @@
+.section {
+  background-color: var(--bg);
+}
+
+.subheader {
+  font-size: 6.4rem;
+  margin-top: 1.2rem;
+}
+
+.scheduleList {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 1024px) {
+  .subheader {
+    font-size: 5.2rem;
+  }
+
+  .scheduleList {
+    margin-top: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .subheader {
+    font-size: 4rem;
+  }
+
+  .scheduleList {
+    margin-top: 4.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .subheader {
+    font-size: 3.2rem;
+  }
+
+  .scheduleList {
+    margin-top: 3.2rem;
+  }
+}

@@ -1,0 +1,22 @@
+.section {
+  margin-top: -6.4rem;
+  background-color: var(--secondary-bg);
+}
+
+.performanceList {
+  margin-top: 6.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .performanceList {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .performanceList {
+    margin-top: 3rem;
+  }
+}

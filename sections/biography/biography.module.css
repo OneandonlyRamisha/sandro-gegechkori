@@ -67,6 +67,13 @@
   flex: 1;
   height: 90vh;
   background-color: var(--card);
+  position: relative;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  object-position: center;
 }
 
 @media (max-width: 1440px) {

@@ -4,7 +4,7 @@ import RecognitionContainer from "@/components/recognitionContainer/recognitionC
 
 export default function Recognition() {
   return (
-    <section className={style.section}>
+    <section className={style.section} id="recognition">
       <h2 className="section-header">{WEBSITE_DATA.recognition.header}</h2>
       <h3 className={style.header}>{WEBSITE_DATA.recognition.subheader}</h3>
       <div className={style.listOfRecognitions}>

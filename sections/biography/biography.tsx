@@ -1,5 +1,6 @@
 import { WEBSITE_DATA } from "@/utils/data";
 import style from "./biography.module.css";
+import Image from "next/image";
 
 export default function Biography() {
   return (
@@ -26,7 +27,14 @@ export default function Biography() {
             ))}
           </ul>
         </div>
-        <div className={style.imageContainer}></div>
+        <div className={style.imageContainer}>
+          <Image
+            className={style.img}
+            alt="Image of sandro sitting and looking at camera"
+            src={"/about.jpg"}
+            fill
+          />
+        </div>
       </div>
     </section>
   );

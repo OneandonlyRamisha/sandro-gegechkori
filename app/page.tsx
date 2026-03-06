@@ -1,7 +1,12 @@
 import Biography from "@/sections/biography/biography";
+import Contact from "@/sections/contact/contact";
+import Footer from "@/sections/footer/footer";
+import Gallery from "@/sections/gallery/gallery";
 import Hero from "@/sections/hero/hero";
 import Media from "@/sections/media/media";
+import Performance from "@/sections/performance/performance";
 import Recognition from "@/sections/recognition/recognition";
+import Schedule from "@/sections/schedule/schedule";
 import Stages from "@/sections/stages/stages";
 
 export default function Home() {
@@ -12,6 +17,12 @@ export default function Home() {
       <Recognition />
       <Stages />
       <Media />
+      <Performance />
+      <Gallery />
+      <Schedule />
+      <Contact />
     </main>
   );
 }
+
+// ! for schedule add no upcomignc ocnerts if there is not concerts

@@ -1,0 +1,156 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  padding: 4rem 0;
+  border-top: 1px solid var(--card);
+  transition: all 0.3s;
+}
+
+.container:last-child {
+  border-bottom: 1px solid var(--card);
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 10rem;
+}
+
+.day {
+  font-size: 6.4rem;
+  color: var(--secondary-text);
+  line-height: 1;
+}
+
+.monthYear {
+  font-size: 1.2rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary-text);
+  margin-top: 0.8rem;
+}
+
+.infoContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.venue {
+  font-size: 3.2rem;
+}
+
+.location {
+  font-size: 1.4rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.piece {
+  font-size: 1.6rem;
+  color: var(--secondary-text);
+  font-family: var(--font-ui);
+}
+
+.cta {
+  flex-shrink: 0;
+  border: 1px solid var(--accent);
+  padding: 1rem 2.8rem;
+  font-size: 1.4rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  transition: all 0.3s;
+}
+
+.cta:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 1024px) {
+  .container {
+    gap: 4rem;
+  }
+
+  .day {
+    font-size: 5.2rem;
+  }
+
+  .venue {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 2.8rem;
+    padding: 3rem 0;
+  }
+
+  .dateContainer {
+    min-width: 7rem;
+  }
+
+  .day {
+    font-size: 4rem;
+  }
+
+  .venue {
+    font-size: 2.4rem;
+  }
+
+  .piece {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2.4rem 0;
+  }
+
+  .dateContainer {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+    min-width: unset;
+    width: 100%;
+  }
+
+  .day {
+    font-size: 3.6rem;
+  }
+
+  .monthYear {
+    margin-top: 0;
+  }
+
+  .infoContainer {
+    gap: 0.8rem;
+  }
+
+  .venue {
+    font-size: 2.2rem;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+}

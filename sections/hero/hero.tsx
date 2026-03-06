@@ -18,10 +18,10 @@ export default function Hero() {
       <p className={style.quote}>{WEBSITE_DATA.heroSection.quote}</p>
 
       <div className={style.ctaContainer}>
-        <Link href={"#"} className={`${style.cta} ${style.primaryCta}`}>
+        <Link href={"#schedule"} className={`${style.cta} ${style.primaryCta}`}>
           {WEBSITE_DATA.heroSection.cta}
         </Link>
-        <Link href={"#"} className={`${style.cta} ${style.secondaryCta}`}>
+        <Link href={"#media"} className={`${style.cta} ${style.secondaryCta}`}>
           <p> {WEBSITE_DATA.heroSection.secondaryCta}</p>
           {<GoTriangleRight className={style.icon} />}
         </Link>

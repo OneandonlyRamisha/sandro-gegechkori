@@ -4,7 +4,7 @@ import StagesContainer from "@/components/stagesContainer/stagesContainer";
 
 export default function Stages() {
   return (
-    <section className={style.section}>
+    <section className={style.section} id="stages">
       <h2 className="section-header">{WEBSITE_DATA.stages.header}</h2>
       <h3 className="sectionSubheader">{WEBSITE_DATA.stages.subheader}</h3>
 
