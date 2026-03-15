@@ -15,13 +15,13 @@ No test suite is configured.
 
 ## Project Overview
 
-Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Built with **Next.js 16 App Router**, **TypeScript**, **CSS Modules**, and **react-icons**. The entire page uses hash-based anchor navigation — no routing.
+Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Built with **Next.js 16 App Router**, **TypeScript**, **CSS Modules**, and **react-icons**. The entire public site uses hash-based anchor navigation — no routing. An admin dashboard at `/admin` manages concert events stored in MongoDB.
 
 ---
 
 ## Content Management: `utils/data.ts`
 
-**All site content lives in a single `WEBSITE_DATA` export.** This is the only place to change text, images, links, events, awards, etc. No CMS, database, or API.
+**All static site content lives in a single `WEBSITE_DATA` export.** No CMS, database, or API — changes require editing this file directly.
 
 ### Data shape summary
 
@@ -35,95 +35,104 @@ Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Bu
 | `media`       | Discography: album name, description, track list `{ index, music, time }`, streaming CTAs |
 | `performance` | Array of `{ venue, city, year, piece, ctaLabel, ctaLink }` live performances              |
 | `gallery`     | Array of `{ src, alt }` images                                                            |
-| `schedule`    | Array of `{ day, month, year, venue, city, country, piece }` upcoming events              |
+| `schedule`    | Placeholder shape only — actual events come from MongoDB at runtime                       |
 | `contact`     | `management { label, name, email }`, `socials { instagram, youtube, facebook }`           |
 | `footer`      | Name, tagline, navigation links array `{ label, href }`                                   |
 
-**Navigation anchor mapping:** Nav items are lowercased to generate hrefs (`"Biography"` → `#biography`). Section IDs must match this pattern. Current IDs: `#biography`, `#recognition`, `#stages`, `#discography` (media section), `#media` (performance section — note the mismatch), `#gallery`, `#schedule`, `#contact`.
-
-**Important placeholder data:** The 6 tracks in `media.discContent.music` all repeat "Chopin — Ballade No. 1 in G minor, Op. 23" — these need to be replaced with the real tracklist. Streaming links in `media.discContent.ctas` and social links in `contact.socials` are all `"#"` placeholders.
+**Placeholder data that needs replacing:**
+- The 6 tracks in `media.discContent.music` all repeat "Chopin — Ballade No. 1" — need real tracklist
+- Streaming links in `media.discContent.ctas` and social links in `contact.socials` are all `"#"` placeholders
 
 ---
 
 ## Page Structure
 
-`app/layout.tsx` wraps everything:
+`app/layout.tsx` is minimal — loads Google Fonts (Cormorant Garamond, EB Garamond, Montserrat) and applies CSS font variables. It does **not** render Navigation or Footer.
 
+`app/page.tsx` renders the full public site:
 ```
-<Navigation />   ← sticky header, "use client" for hamburger toggle
-{children}       ← app/page.tsx
-<Footer />       ← also rendered inside page.tsx (double-rendered — see below)
+<Navigation />   ← sticky header, "use client" for hamburger + smooth scroll
+<main>           ← all sections in order
+<Footer />
 ```
-
-> **Note:** `Footer` is imported in both `app/layout.tsx` and `app/page.tsx`. This results in two footers rendering. Likely a bug.
 
 `app/page.tsx` renders sections in this order:
-
 1. `Hero` — full-viewport background image, name, quote, two CTAs
 2. `Biography` — two-column: text left, `about.jpg` right
 3. `Recognition` — awards list + critic quote
 4. `Stages` — grid of concert hall cards
 5. `Media` — album art + tracklist (id=`"discography"`)
-6. `Performance` — live performance list (id=`"media"`) ← id mismatch with nav
+6. `Performance` — live performance list (id=`"performance"`)
 7. `Gallery` — CSS grid of 6 images
-8. `Schedule` — upcoming concert list
-9. `Contact` — left: management info; right: contact form (static, no submission handler)
+8. `Schedule` — upcoming concert list, **fetched from MongoDB at request time**
+9. `Contact` — management info with gold-accented agent block
+
+---
+
+## Architecture: Two Data Layers
+
+### Static content
+All bio, awards, stages, discography, performances, and gallery data lives in `utils/data.ts`. Server Components import `WEBSITE_DATA` directly — no API calls.
+
+### Dynamic events (MongoDB)
+Concert schedule events are stored in MongoDB and managed via the admin dashboard. The `Schedule` section is an `async` Server Component with `export const dynamic = "force-dynamic"` that calls `connectDB()` and queries the `Event` model directly (no HTTP fetch).
 
 ---
 
 ## Sections (`sections/`)
 
-Each section:
+Each section is a Server Component (no `"use client"`) except Navigation. Each has a co-located `*.module.css`.
 
-- Is a Server Component (no `"use client"`) except Navigation
-- Imports `WEBSITE_DATA` directly
-- Has a co-located `*.module.css` file
-- Has a section `id` for anchor navigation
+### Section → id mapping (for anchor nav)
 
-### Section → Component relationships
+| Section file | `id` attribute  | Nav label      |
+| ------------ | --------------- | -------------- |
+| biography    | `biography`     | Biography      |
+| recognition  | `recognition`   | Recognition    |
+| stages       | `stages`        | Stages         |
+| media        | `discography`   | Discography    |
+| performance  | `performance`   | Performance    |
+| gallery      | `gallery`       | Gallery        |
+| schedule     | `schedule`      | Schedule       |
+| contact      | `contact`       | Contact        |
 
-| Section       | Child component                                                                                                        |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `recognition` | `RecognitionContainer` — renders `{ year, name, des }`                                                                 |
-| `stages`      | `StagesContainer` — renders `{ img, name, city, country }` with `next/image` at 1000×1000                              |
-| `media`       | `SongList` — renders `{ index, song, duration }` row                                                                   |
-| `performance` | `PerformanceItem` — renders `{ venue, city, year, piece, ctaLabel, ctaLink }`                                          |
-| `schedule`    | `ScheduleItem` — renders `{ day, month, year, venue, city, country, piece }` with hardcoded "Inquire" CTA link (`"#"`) |
-| `gallery`     | Inline `next/image` with `fill`, CSS grid classes `item1`–`item6` for layout                                           |
+**Navigation anchor mapping:** Nav items in `WEBSITE_DATA.navigation` are lowercased to generate hrefs. Section IDs must match exactly.
 
 ---
 
-## Components (`components/`)
+## Admin Dashboard (`app/admin/`)
 
-All are pure presentational Server Components (props-in, JSX-out) except `Navigation`.
+- `/admin` → redirects to `/admin/events`
+- `/admin/login` → login form, posts to `/api/auth/login`, stores JWT in `localStorage`
+- `/admin/events` → full CRUD dashboard (JWT-protected, redirects to login if unauthenticated)
 
-### `Navigation` (`components/navigation/navigation.tsx`)
+Admin pages are `"use client"` components. Auth state is held in `localStorage` as `admin_token`.
 
-- `"use client"` — uses `useState` for mobile menu open/closed
-- Logo: `SG` text link to `#`
-- Nav links: `WEBSITE_DATA.navigation` lowercased as hash hrefs
-- Hamburger: three `<span>` elements, toggled via `.hamburgerOpen` CSS class
-- Clicking a nav link closes the menu (`setIsOpen(false)`)
+### API Routes
 
-### `StagesContainer`
+| Endpoint | Method | Auth | Purpose |
+|----------|--------|------|---------|
+| `/api/auth/login` | POST | No | Validate hardcoded credentials, return JWT |
+| `/api/public/events` | GET | No | All events (used by Schedule section via HTTP if needed) |
+| `/api/admin/events` | GET | Bearer JWT | All events |
+| `/api/admin/events` | POST | Bearer JWT | Create event |
+| `/api/admin/events/[id]` | GET/PUT/DELETE | Bearer JWT | Single event operations |
 
-Props: `img`, `name`, `city`, `country`. Uses `next/image` with explicit `width={1000} height={1000}`.
+### Event model fields (`models/Event.ts`)
 
-### `RecognitionContainer`
+`day` (Number), `month` (String), `year` (Number), `venue` (required), `city` (required), `country`, `piece`, `ticketUrl` (optional)
 
-Props: `year` (number), `name`, `des`. Simple year + name/description layout.
+---
 
-### `ScheduleItem`
+## Auth (`lib/auth.ts`, `app/api/auth/login/route.ts`)
 
-Props: `day`, `month`, `year`, `venue`, `city`, `country`, `piece`. The "Inquire" CTA button links to hardcoded `"#"`.
+Credentials are hardcoded in `route.ts` (username: `sandroGeg`). JWT is signed with `JWT_SECRET` env var, 7-day expiry. All protected routes call `requireAuth(req)` which extracts and verifies the `Authorization: Bearer <token>` header.
 
-### `PerformanceItem`
+---
 
-Props: `venue`, `city`, `year`, `piece`, `ctaLabel`, `ctaLink`. Renders venue name, `city · year | piece` meta line, and a CTA link.
+## Database (`lib/db.ts`)
 
-### `SongList`
-
-Props: `index` (roman numeral string), `song`, `duration`. Renders one track row.
+`connectDB()` uses a global singleton cache to avoid multiple connections in serverless/hot-reload environments. Requires `DB` env var (MongoDB connection string).
 
 ---
 
@@ -132,79 +141,68 @@ Props: `index` (roman numeral string), `song`, `duration`. Renders one track row
 ### Global CSS (`app/globals.css`)
 
 **CSS custom properties (dark theme):**
-
 ```css
---bg: #0a0a10 /* near-black background */ --secondary-bg: #111118
-  --card: #1a1a24 --accent: #c9a84c /* gold — primary brand color */
-  --accent-effect: #e2c97e /* lighter gold for hover/glow */
-  --accent-spot: #5c1a2e /* burgundy for spot accents */ --text: #f0ebe0
-  /* off-white body text */ --highlight: #ffffff --secondary-text: #a89f8c
-  /* muted gray */;
+--bg: #0a0a10          /* near-black background */
+--secondary-bg: #111118
+--card: #1a1a24
+--accent: #c9a84c      /* gold — primary brand color */
+--accent-effect: #e2c97e
+--accent-spot: #5c1a2e /* burgundy */
+--text: #f0ebe0        /* off-white body text */
+--secondary-text: #a89f8c
 ```
 
 **Rem baseline:** `html { font-size: 62.5% }` → `1rem = 10px`
 
-**Typography assignment:**
+**Typography:**
+- `h1–h6`: Cormorant Garamond (`--font-headers`)
+- `p`: EB Garamond (`--font-body`)
+- UI/buttons/labels: Montserrat (`--font-ui`)
 
-- `h1–h6`: `var(--font-headers)` (Cormorant Garamond), weight 400
-- `p`: `var(--font-body)` (EB Garamond)
-- `body` default / UI elements: `var(--font-ui)` (Montserrat)
-
-**Shared utility classes (use these in section/component CSS modules):**
-
-- `.section-header` — uppercase Montserrat label in `--accent` gold, with a 2rem gold line via `::before`
-- `.sectionSubheader` — large serif heading (6.4rem → responsive down to 2.8rem)
+**Shared utility classes (use in section/component CSS modules):**
+- `.section-header` — uppercase Montserrat label in gold, with a 2rem gold line via `::before`
+- `.sectionSubheader` — large serif heading (6.4rem → responsive down to 2.8rem), `margin-top: 1.2rem`
 
 **Default section padding:** `9.6rem 4.8rem` (vertical/horizontal), responsive down to `9.6rem 2rem` at 480px.
 
 ### Responsive breakpoints
-
 - `1280px` — subheader font reduces
 - `1024px` — subheader font reduces further
 - `768px` — section/header padding reduces, mobile nav activates
 - `480px` — maximum compression
 
-### CSS Modules
+---
 
-Each section and component has its own `*.module.css`. All class names are locally scoped. No global class sharing between modules except the utility classes defined in `globals.css`.
+## Environment Variables (`config.env`)
+
+Loaded via `dotenv` in `next.config.ts`. Required variables:
+- `DB` — MongoDB Atlas connection string
+- `JWT_SECRET` — Secret for signing JWTs
 
 ---
 
-## Fonts
+## Navigation (`components/navigation/navigation.tsx`)
 
-Loaded via `next/font/google` in `app/layout.tsx` and applied as CSS variables on `<body>`:
-
-| Variable         | Font               | Usage                                        |
-| ---------------- | ------------------ | -------------------------------------------- |
-| `--font-headers` | Cormorant Garamond | All `h1`–`h6` elements                       |
-| `--font-body`    | EB Garamond        | All `p` elements                             |
-| `--font-ui`      | Montserrat         | Body default, UI elements, `.section-header` |
-
----
-
-## Icons
-
-From `react-icons`:
-
-- `react-icons/go` — `GoTriangleRight` (hero secondary CTA arrow)
-- `react-icons/md` — `MdOpenInNew`, `MdArrowOutward` (media/contact links)
-- `react-icons/fi` — `FiInstagram`, `FiYoutube`, `FiFacebook` (footer + contact)
+- `"use client"` — uses `useState` for mobile menu
+- Clicking a nav link calls `e.preventDefault()` and uses `document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })` — this ensures smooth scrolling works even when the hash is already set in the URL (browser default would do nothing on repeated clicks)
 
 ---
 
 ## Static Assets (`public/`)
 
-| File                      | Used in                          |
-| ------------------------- | -------------------------------- |
-| `/hero.jpg`               | Hero section background, gallery |
-| `/about.jpg`              | Biography section portrait       |
-| `/album.jpg`              | Media section album art, gallery |
-| `/concertgebouw.jpg`      | Stages — Concertgebouw Amsterdam |
-| `/mozarthaus.jpg`         | Stages — Mozarthaus Vienna       |
-| `/hall2.jpg`–`/hall8.jpg` | Stages — other venues            |
+| File | Used in |
+|------|---------|
+| `/hero.jpg` | Hero section background, gallery |
+| `/about.jpg` | Biography section portrait |
+| `/album.jpg` | Media section album art, gallery |
+| `/concertgebouw.jpg` | Stages — Concertgebouw Amsterdam |
+| `/mozarthaus.jpg` | Stages — Mozarthaus Vienna |
+| `/hall2.jpg`–`/hall8.jpg` | Stages — other venues |
 
 ---
 
-## Known Bugs
+## Known TODOs
 
-- `Footer` is imported in both `app/layout.tsx` and `app/page.tsx`, causing it to render twice
+- Replace placeholder track listing in `media.discContent.music` with real tracklist
+- Replace `"#"` placeholder URLs in `contact.socials` and `media.discContent.ctas` with real links
+- Contact form was removed; management info is shown instead
