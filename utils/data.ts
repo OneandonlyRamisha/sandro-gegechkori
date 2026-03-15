@@ -32,8 +32,7 @@ export const WEBSITE_DATA = {
     highlights: [
       "Born: Georgia, 2000",
       "Teacher: Julian Martin",
-      "School: Juilliard",
-      "Label: Naxos",
+      "Graduated: The Juilliard School of Music ",
     ],
   },
 
@@ -44,7 +43,7 @@ export const WEBSITE_DATA = {
     recognitions: [
       {
         year: 2015,
-        name: "Arno Babajanyan International Piano Competition, Yerevan",
+        name: "Arno Babajanyan International Piano Competition",
         des: "FIRST PRIZE",
       },
       {
@@ -54,24 +53,31 @@ export const WEBSITE_DATA = {
       },
       {
         year: 2021,
-        name: "Maria Canals International Music Competition, Barcelona",
-        des: "FIRST PRIZE & GOLD MEDAL (€25,000)",
+        name: "Maria Canals International Music Competition",
+        des: "FIRST PRIZE & GOLD MEDAL",
       },
-      {
-        year: 2021,
-        name: "MCB International Music Competition",
-        des: "FIRST PRIZE",
-      },
+
       {
         year: 2022,
         name: "WFIMC — World Federation of International Music Competitions",
         des: "OFFICIAL WFIMC ARTIST",
       },
+      {
+        year: 2023,
+        name: "Forbes 30 under 30 Culture & Style",
+        des: "THE WINNER OF THE PRIZE",
+      },
+      ,
+      {
+        year: 2025,
+        name: "Euregio International Piano Award Competition",
+        des: "FIRST PRIZE",
+      },
     ],
 
     quote:
       "“The unequivocally gifted pianist who renders music with remarkable precision, refined artistry, and dazzling technical mastery”",
-    author: " – Fundacion Occident",
+    author: " – Arturo Reverter",
   },
 
   stages: {
@@ -83,7 +89,7 @@ export const WEBSITE_DATA = {
         hall: "The Royal Concertgebouw",
         city: "AMSTERDAM",
         country: "Netherlands",
-        img: "/hall1.jpg",
+        img: "/concertgebouw.jpg",
       },
       {
         hall: "Palau de la Música Catalana",
@@ -95,7 +101,7 @@ export const WEBSITE_DATA = {
         hall: "Mozarthaus",
         city: "VIENNA",
         country: "Austria",
-        img: "/hall3.jpg",
+        img: "/mozarthaus.jpg",
       },
       {
         hall: "Gasteig",
@@ -110,22 +116,22 @@ export const WEBSITE_DATA = {
         img: "/hall5.jpg",
       },
       {
-        hall: "Kaisersaal",
-        city: "VIENNA",
-        country: "Austria",
-        img: "/hall.jpg",
+        hall: "Alice Tully Hall",
+        city: "NEW YORK",
+        country: "United State",
+        img: "/hall6.jpg",
       },
       {
-        hall: "Nanjing Performing Arts Center",
-        city: "NANJING",
-        country: "China",
-        img: "/hall.jpg",
+        hall: "Auditorio De Tenerife",
+        city: "SANTA CRUZ DE TENERIFE",
+        country: "Spain",
+        img: "/hall7.jpg",
       },
       {
         hall: "Auditorio Nacional",
         city: "MADRID",
         country: "Spain",
-        img: "/hall.jpg",
+        img: "/hall8.jpg",
       },
     ],
   },
@@ -293,7 +299,7 @@ export const WEBSITE_DATA = {
   },
   footer: {
     name: "Sandro Gegechkori",
-    tagline: "Pianist & Composer",
+    tagline: "Georgian Concert Pianist",
     links: [
       { label: "About", href: "#about" },
       { label: "Discography", href: "#media" },
