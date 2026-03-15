@@ -8,10 +8,16 @@ import { useState } from "react";
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+    e.preventDefault();
+    setIsOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <header className={style.header}>
       <nav className={style.nav}>
-        <Link href={"#"}>
+        <Link href={"#"} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
           <p className={style.logo}>SG</p>
         </Link>
 
@@ -21,7 +27,7 @@ export default function Navigation() {
               <Link
                 href={"#" + i.toLowerCase()}
                 className={style.navListItem}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(e, i.toLowerCase())}
               >
                 {i}
               </Link>

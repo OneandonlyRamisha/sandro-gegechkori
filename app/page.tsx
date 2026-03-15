@@ -8,20 +8,25 @@ import Performance from "@/sections/performance/performance";
 import Recognition from "@/sections/recognition/recognition";
 import Schedule from "@/sections/schedule/schedule";
 import Stages from "@/sections/stages/stages";
+import Navigation from "@/components/navigation/navigation";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Biography />
-      <Recognition />
-      <Stages />
-      <Media />
-      <Performance />
-      <Gallery />
-      <Schedule />
-      <Contact />
-    </main>
+    <>
+      <Navigation />
+      <main>
+        <Hero />
+        <Biography />
+        <Recognition />
+        <Stages />
+        <Media />
+        <Performance />
+        <Gallery />
+        <Schedule />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
 

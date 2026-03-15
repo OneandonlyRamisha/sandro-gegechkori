@@ -1,0 +1,379 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a0a10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3.2rem;
+  background-color: #111118;
+  border-bottom: 1px solid #1e1e2a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.logo {
+  font-family: var(--font-headers), serif;
+  font-size: 2.4rem;
+  color: #c9a84c;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-family: var(--font-headers), serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #f0ebe0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* ── Buttons ─────────────────────────────────────── */
+.btnPrimary {
+  background-color: #c9a84c;
+  border: none;
+  border-radius: 4px;
+  color: #0a0a10;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.9rem 1.8rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background-color: #e2c97e;
+}
+
+.btnPrimary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnGhost {
+  background: transparent;
+  border: 1px solid #2a2a3a;
+  border-radius: 4px;
+  color: #a89f8c;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+  padding: 0.9rem 1.8rem;
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btnGhost:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
+
+.btnEdit {
+  background: transparent;
+  border: 1px solid #2a2a3a;
+  border-radius: 3px;
+  color: #a89f8c;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.2rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btnEdit:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
+
+.btnDelete {
+  background: transparent;
+  border: 1px solid #2a2a3a;
+  border-radius: 3px;
+  color: #a89f8c;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.2rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btnDelete:hover {
+  border-color: #e05c5c;
+  color: #e05c5c;
+}
+
+.btnDeleteConfirm {
+  background-color: #b33a3a;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.9rem 1.8rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.btnDeleteConfirm:hover {
+  background-color: #cc4444;
+}
+
+/* ── Main ─────────────────────────────────────────── */
+.main {
+  flex: 1;
+  padding: 3.2rem;
+}
+
+/* ── Empty state ─────────────────────────────────── */
+.empty {
+  color: #a89f8c;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 6rem 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 8rem 0;
+}
+
+.emptyTitle {
+  font-family: var(--font-headers), serif;
+  font-size: 2.4rem;
+  color: #f0ebe0;
+  margin-bottom: 1rem;
+}
+
+.emptyHint {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.4rem;
+  color: #a89f8c;
+}
+
+/* ── Table ─────────────────────────────────────────── */
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid #1e1e2a;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.4rem;
+}
+
+.table thead tr {
+  background-color: #111118;
+  border-bottom: 1px solid #1e1e2a;
+}
+
+.table th {
+  color: #a89f8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 1.4rem 1.6rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #1a1a24;
+  transition: background-color 0.15s;
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: #111118;
+}
+
+.table td {
+  color: #f0ebe0;
+  padding: 1.4rem 1.6rem;
+  vertical-align: middle;
+}
+
+.dateCell {
+  white-space: nowrap;
+  color: #c9a84c !important;
+  font-weight: 500;
+}
+
+.pieceCell {
+  color: #a89f8c !important;
+  font-style: italic;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticketLink {
+  color: #c9a84c;
+  font-size: 1.2rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.none {
+  color: #3a3a4a;
+}
+
+.actions {
+  display: flex;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ── Modal ─────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 50;
+}
+
+.modal {
+  background-color: #111118;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 3.6rem;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalTitle {
+  font-family: var(--font-headers), serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #f0ebe0;
+  margin-bottom: 2.8rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.row {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.grow {
+  flex: 1;
+}
+
+.label {
+  color: #a89f8c;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.input {
+  background-color: #0a0a10;
+  border: 1px solid #2a2a3a;
+  border-radius: 4px;
+  color: #f0ebe0;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.4rem;
+  outline: none;
+  padding: 1rem 1.4rem;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: #c9a84c;
+}
+
+.input option {
+  background-color: #111118;
+}
+
+.error {
+  color: #e05c5c;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: flex-end;
+  margin-top: 0.8rem;
+}
+
+.deleteMsg {
+  color: #a89f8c;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 2.4rem;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .main {
+    padding: 1.6rem;
+  }
+
+  .modal {
+    padding: 2.4rem;
+  }
+}

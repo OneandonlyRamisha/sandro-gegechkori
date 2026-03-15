@@ -8,6 +8,7 @@ export default function ScheduleItem({
   city,
   country,
   piece,
+  ticketUrl,
 }: {
   day: string;
   month: string;
@@ -16,6 +17,7 @@ export default function ScheduleItem({
   city: string;
   country: string;
   piece: string;
+  ticketUrl?: string;
 }) {
   return (
     <div className={style.container}>
@@ -34,8 +36,13 @@ export default function ScheduleItem({
         <p className={style.piece}>{piece}</p>
       </div>
 
-      <a href="#" className={style.cta}>
-        Inquire
+      <a
+        href={ticketUrl || "#"}
+        target={ticketUrl ? "_blank" : undefined}
+        rel={ticketUrl ? "noopener noreferrer" : undefined}
+        className={style.cta}
+      >
+        {ticketUrl ? "Get Tickets" : "Inquire"}
       </a>
     </div>
   );

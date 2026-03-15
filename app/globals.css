@@ -86,7 +86,7 @@ ul {
 }
 
 .sectionSubheader {
-  margin-top: 3.6rem;
+  margin-top: 1.2rem;
   font-size: 6.4rem;
 }
 
@@ -111,7 +111,7 @@ ul {
 
   .sectionSubheader {
     font-size: 3.6rem;
-    margin-top: 2.4rem;
+    margin-top: 1.2rem;
   }
 }
 
@@ -124,6 +124,6 @@ ul {
   }
   .sectionSubheader {
     font-size: 2.8rem;
-    margin-top: 1.8rem;
+    margin-top: 1.2rem;
   }
 }

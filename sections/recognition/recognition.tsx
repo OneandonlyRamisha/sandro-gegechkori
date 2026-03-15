@@ -8,9 +8,9 @@ export default function Recognition() {
       <h2 className="section-header">{WEBSITE_DATA.recognition.header}</h2>
       <h3 className={style.header}>{WEBSITE_DATA.recognition.subheader}</h3>
       <div className={style.listOfRecognitions}>
-        {WEBSITE_DATA.recognition.recognitions.map((i) => (
+        {WEBSITE_DATA.recognition.recognitions.map((i, idx) => i && (
           <RecognitionContainer
-            key={i.name}
+            key={i.name ?? idx}
             name={i.name}
             des={i.des}
             year={i.year}

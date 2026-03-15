@@ -4,7 +4,7 @@ import PerformanceItem from "@/components/performanceItem/performanceItem";
 
 export default function Performance() {
   return (
-    <section className={style.section} id="media">
+    <section className={style.section} id="performance">
       <h2 className="section-header">{WEBSITE_DATA.performance.header}</h2>
       <h3 className="sectionSubheader">{WEBSITE_DATA.performance.subheader}</h3>
 

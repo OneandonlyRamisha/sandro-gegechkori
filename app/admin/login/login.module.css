@@ -1,0 +1,118 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a0a10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #111118;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 4.8rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-headers), serif;
+  font-size: 3.2rem;
+  color: #c9a84c;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-bottom: 2.4rem;
+}
+
+.title {
+  font-family: var(--font-headers), serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #f0ebe0;
+  margin-bottom: 0.8rem;
+}
+
+.subtitle {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.2rem;
+  color: #a89f8c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 3.6rem;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.label {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.2rem;
+  color: #a89f8c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.input {
+  background-color: #0a0a10;
+  border: 1px solid #2a2a3a;
+  border-radius: 4px;
+  color: #f0ebe0;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.5rem;
+  padding: 1.2rem 1.6rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: #c9a84c;
+}
+
+.error {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.3rem;
+  color: #e05c5c;
+  text-align: center;
+}
+
+.btn {
+  margin-top: 0.8rem;
+  background-color: #c9a84c;
+  border: none;
+  border-radius: 4px;
+  color: #0a0a10;
+  cursor: pointer;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 1.4rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #e2c97e;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

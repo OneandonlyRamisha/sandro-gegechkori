@@ -4,7 +4,7 @@ export const WEBSITE_DATA = {
     "Recognition",
     "Stages",
     "Discography",
-    "Media",
+    "Performance",
     "Gallery",
     "Schedule",
     "Contact",
@@ -285,7 +285,7 @@ export const WEBSITE_DATA = {
   contact: {
     header: "contact",
     subheader: "Book a Performance.",
-    des: "For concert bookings, artist management inquiries, and press requests, please use the form or reach out directly.",
+    des: "For concert bookings, artist management inquiries, and press requests, please reach out directly to the artist's management.",
     management: {
       label: "Artist Management",
       name: "Interlude Artist Management",

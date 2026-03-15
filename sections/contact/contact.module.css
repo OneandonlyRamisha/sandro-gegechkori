@@ -1,188 +1,161 @@
 .section {
   background-color: var(--secondary-bg);
   display: flex;
-  align-items: flex-start;
-  gap: 8rem;
-}
-
-/* ---- left ---- */
-
-.left {
-  flex: 1;
-  display: flex;
   flex-direction: column;
-  gap: 2.8rem;
+  gap: 5.6rem;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 4rem;
 }
 
-.subheader {
-  font-size: 4.8rem;
-  line-height: 1.1;
-}
+/* ---- background monogram ---- */
 
-.des {
-  font-size: 1.6rem;
-  color: var(--secondary-text);
-  line-height: 1.7;
-  max-width: 50ch;
-}
-
-.management {
-  display: flex;
-  gap: 2rem;
-}
-
-.managementBar {
-  display: block;
-  width: 0.2rem;
-  background-color: var(--accent);
-  flex-shrink: 0;
-}
-
-.managementInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.managementLabel {
-  font-size: 1.2rem;
-  font-family: var(--font-ui);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+.watermark {
+  position: absolute;
+  top: -4rem;
+  right: -2rem;
+  font-family: var(--font-headers);
+  font-size: 38vw;
+  font-weight: 400;
   color: var(--accent);
+  opacity: 0.03;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.05em;
 }
 
-.managementName {
-  font-size: 2rem;
-  color: var(--text);
-}
+/* ---- top ---- */
 
-.managementEmail {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.4rem;
-  font-family: var(--font-ui);
-  color: var(--secondary-text);
-  transition: color 0.3s;
-}
-
-.managementEmail:hover {
-  color: var(--accent);
-}
-
-/* ---- right ---- */
-
-.right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3.6rem;
-}
-
-.field {
+.top {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-.label {
-  font-size: 1.2rem;
+/* ---- subheader ---- */
+
+.subheader {
+  font-size: 6.4rem;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+/* ---- bottom row ---- */
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4rem;
+  border-top: 1px solid #1e1e2a;
+  padding-top: 4rem;
+}
+
+.des {
   font-family: var(--font-ui);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 1.5rem;
   color: var(--secondary-text);
+  line-height: 1.8;
+  max-width: 40ch;
 }
 
-.input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--card);
-  padding: 1rem 0;
-  font-size: 1.6rem;
-  color: var(--text);
+/* ---- agent block ---- */
+
+.agent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.2rem;
+  flex-shrink: 0;
+  border-right: 3px solid var(--accent);
+
+  padding-right: 2.8rem;
+}
+
+.agentLabel {
   font-family: var(--font-ui);
-  outline: none;
-  width: 100%;
-  transition: border-color 0.3s;
-}
-
-.input:focus {
-  border-bottom-color: var(--accent);
-}
-
-.textarea {
-  resize: none;
-  height: 10rem;
-}
-
-.cta {
-  width: 100%;
-  padding: 1.6rem;
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-size: 1.4rem;
-  font-family: var(--font-ui);
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: all 0.3s;
+  color: var(--accent);
 }
 
-.cta:hover {
-  background-color: var(--accent);
-  color: var(--bg);
+.agentName {
+  font-family: var(--font-headers);
+  font-size: 3.6rem;
+  font-weight: 400;
+  color: var(--text);
+  text-align: right;
+  line-height: 1.1;
+}
+
+.agentEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-ui);
+  font-size: 1.4rem;
+  color: var(--secondary-text);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.agentEmail:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 /* ---- responsive ---- */
 
 @media (max-width: 1024px) {
-  .section {
-    gap: 5rem;
+  .subheader {
+    font-size: 5.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .watermark {
+    font-size: 55vw;
+    top: auto;
+    bottom: -2rem;
+    right: -1rem;
   }
 
   .subheader {
     font-size: 4rem;
   }
-}
 
-@media (max-width: 768px) {
-  .section {
+  .bottom {
     flex-direction: column;
-    gap: 5rem;
+    align-items: flex-start;
+    gap: 3.2rem;
   }
 
-  .right {
-    width: 100%;
+  .agent {
+    align-items: flex-start;
   }
 
-  .subheader {
-    font-size: 3.6rem;
-  }
-
-  .des {
-    max-width: 100%;
+  .agentName {
+    text-align: left;
+    font-size: 2.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .subheader {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
   }
 
   .des {
     font-size: 1.4rem;
   }
 
-  .managementName {
-    font-size: 1.8rem;
-  }
-
-  .right {
-    gap: 2.8rem;
+  .agentName {
+    font-size: 2.4rem;
   }
 }
