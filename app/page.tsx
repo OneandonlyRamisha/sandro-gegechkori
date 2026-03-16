@@ -30,8 +30,3 @@ export default function Home() {
   );
 }
 
-// ! for schedule add no upcomignc ocnerts if there is not concerts
-// Change contact and remove contact form fully just live agent detiasl
-// In discography change copy
-// Add logic so that sondro is able to add schedule himself
-// Sandro ge

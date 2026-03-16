@@ -110,6 +110,7 @@
   .top {
     flex-direction: column;
     gap: 3.2rem;
+    align-items: flex-start;
   }
 
   .nav {

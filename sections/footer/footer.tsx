@@ -15,18 +15,21 @@ export default function Footer() {
           <a
             href={WEBSITE_DATA.contact.socials.instagram}
             className={style.socialLink}
+            target="_blank"
           >
             <FiInstagram />
           </a>
           <a
             href={WEBSITE_DATA.contact.socials.youtube}
             className={style.socialLink}
+            target="_blank"
           >
             <FiYoutube />
           </a>
           <a
             href={WEBSITE_DATA.contact.socials.facebook}
             className={style.socialLink}
+            target="_blank"
           >
             <FiFacebook />
           </a>

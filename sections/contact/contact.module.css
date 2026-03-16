@@ -138,6 +138,12 @@
 
   .agent {
     align-items: flex-start;
+    border-right: none;
+
+    padding-right: 0;
+    border-left: 3px solid var(--accent);
+
+    padding-left: 2.8rem;
   }
 
   .agentName {

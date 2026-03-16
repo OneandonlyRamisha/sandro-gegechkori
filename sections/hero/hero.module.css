@@ -118,6 +118,10 @@
 }
 
 @media (max-width: 480px) {
+  .section {
+    min-height: 100dvh;
+  }
+
   .header {
     font-size: 14vw;
     margin: -0.8rem 0;
@@ -149,6 +153,10 @@
   .cta {
     font-size: 1.5rem;
     padding: 1rem 2rem;
+  }
+  .secondaryCta {
+    padding-left: 1rem;
+    /* display: none; */
   }
 
   .section {

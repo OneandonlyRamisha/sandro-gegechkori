@@ -11,16 +11,36 @@ export interface IEvent extends Document {
   ticketUrl?: string;
 }
 
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
 const EventSchema = new Schema<IEvent>(
   {
-    day: { type: Number, required: true },
-    month: { type: String, required: true },
-    year: { type: Number, required: true },
-    venue: { type: String, required: true },
-    city: { type: String, required: true },
-    country: { type: String, default: "" },
-    piece: { type: String, default: "" },
-    ticketUrl: { type: String, default: "" },
+    day: { type: Number, required: true, min: 1, max: 31 },
+    month: { type: String, required: true, enum: MONTHS },
+    year: { type: Number, required: true, min: 2000, max: 2099 },
+    venue: { type: String, required: true, maxlength: 200 },
+    city: { type: String, required: true, maxlength: 100 },
+    country: { type: String, default: "", maxlength: 100 },
+    piece: { type: String, default: "", maxlength: 300 },
+    ticketUrl: {
+      type: String,
+      default: "",
+      validate: {
+        validator: (v: string) => {
+          if (v === "") return true;
+          try {
+            const url = new URL(v);
+            return url.protocol === "http:" || url.protocol === "https:";
+          } catch {
+            return false;
+          }
+        },
+        message: "ticketUrl must be a valid http/https URL or empty",
+      },
+    },
   },
   { timestamps: true }
 );

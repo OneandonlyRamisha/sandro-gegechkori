@@ -12,11 +12,7 @@ export function verifyToken(token: string): jwt.JwtPayload | string {
 }
 
 export function getTokenFromRequest(req: NextRequest): string | null {
-  const auth = req.headers.get("authorization");
-  if (auth && auth.startsWith("Bearer ")) {
-    return auth.slice(7);
-  }
-  return null;
+  return req.cookies.get("admin_token")?.value ?? null;
 }
 
 export function requireAuth(

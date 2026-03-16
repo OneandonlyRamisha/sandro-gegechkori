@@ -4,6 +4,7 @@ import Link from "next/link";
 import style from "./navigation.module.css";
 import { WEBSITE_DATA } from "@/utils/data";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,12 @@ export default function Navigation() {
   }
 
   return (
-    <header className={style.header}>
+    <motion.header
+      className={style.header}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <nav className={style.nav}>
         <Link href={"#"} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
           <p className={style.logo}>SG</p>
@@ -45,6 +51,6 @@ export default function Navigation() {
           <span></span>
         </button>
       </nav>
-    </header>
+    </motion.header>
   );
 }

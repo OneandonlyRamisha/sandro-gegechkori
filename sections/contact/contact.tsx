@@ -1,6 +1,7 @@
 import { WEBSITE_DATA } from "@/utils/data";
 import style from "./contact.module.css";
 import { MdArrowOutward } from "react-icons/md";
+import FadeUp from "@/components/animations/FadeUp";
 
 export default function Contact() {
   const { contact } = WEBSITE_DATA;
@@ -11,12 +12,12 @@ export default function Contact() {
         SG
       </span>
 
-      <div className={style.top}>
+      <FadeUp className={style.top}>
         <h2 className="section-header">{contact.header}</h2>
         <h3 className="sectionSubheader">{contact.subheader}</h3>
-      </div>
+      </FadeUp>
 
-      <div className={style.bottom}>
+      <FadeUp className={style.bottom} delay={0.18}>
         <p className={style.des}>{contact.des}</p>
 
         <div className={style.agent}>
@@ -30,7 +31,7 @@ export default function Contact() {
             <MdArrowOutward />
           </a>
         </div>
-      </div>
+      </FadeUp>
     </section>
   );
 }

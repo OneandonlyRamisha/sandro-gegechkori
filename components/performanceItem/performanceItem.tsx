@@ -28,7 +28,7 @@ export default function PerformanceItem({
         </div>
       </div>
 
-      <a href={ctaLink} className={style.cta}>
+      <a href={ctaLink} target="_blank" className={style.cta}>
         <span className={style.ctaLabel}>{ctaLabel}</span>
         <span className={style.ctaIcon}>+</span>
       </a>

@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import { Event } from "@/models/Event";
 import { requireAuth } from "@/lib/auth";
+import mongoose from "mongoose";
+
+function isValidId(id: string): boolean {
+  return mongoose.Types.ObjectId.isValid(id);
+}
 
 export async function GET(
   req: NextRequest,
@@ -13,6 +18,9 @@ export async function GET(
   }
 
   const { id } = await params;
+  if (!isValidId(id)) {
+    return NextResponse.json({ error: "Invalid event ID" }, { status: 400 });
+  }
   await connectDB();
   const event = await Event.findById(id);
   if (!event) {
@@ -41,11 +49,24 @@ export async function PUT(
   }
 
   const { id } = await params;
+  if (!isValidId(id)) {
+    return NextResponse.json({ error: "Invalid event ID" }, { status: 400 });
+  }
   await connectDB();
-  const event = await Event.findByIdAndUpdate(id, body, {
-    new: true,
-    runValidators: true,
-  });
+  const event = await Event.findByIdAndUpdate(
+    id,
+    {
+      day: Number(body.day),
+      month: String(body.month),
+      year: Number(body.year),
+      venue: String(body.venue),
+      city: String(body.city),
+      country: body.country ? String(body.country) : "",
+      piece: body.piece ? String(body.piece) : "",
+      ticketUrl: body.ticketUrl ? String(body.ticketUrl) : "",
+    },
+    { new: true, runValidators: true }
+  );
   if (!event) {
     return NextResponse.json({ error: "Event not found" }, { status: 404 });
   }
@@ -62,6 +83,9 @@ export async function DELETE(
   }
 
   const { id } = await params;
+  if (!isValidId(id)) {
+    return NextResponse.json({ error: "Invalid event ID" }, { status: 400 });
+  }
   await connectDB();
   const event = await Event.findByIdAndDelete(id);
   if (!event) {

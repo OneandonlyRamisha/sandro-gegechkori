@@ -43,19 +43,8 @@ export default function AdminEventsPage() {
   const [error, setError] = useState("");
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  function getToken() {
-    return localStorage.getItem("admin_token");
-  }
-
-  function authHeaders() {
-    return {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    };
-  }
-
   async function fetchEvents() {
-    const res = await fetch("/api/admin/events", { headers: authHeaders() });
+    const res = await fetch("/api/admin/events", { credentials: "include" });
     if (res.status === 401) {
       router.push("/admin/login");
       return;
@@ -66,10 +55,6 @@ export default function AdminEventsPage() {
   }
 
   useEffect(() => {
-    if (!getToken()) {
-      router.push("/admin/login");
-      return;
-    }
     fetchEvents();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -119,16 +104,19 @@ export default function AdminEventsPage() {
     };
 
     try {
-      const url = editId
-        ? `/api/admin/events/${editId}`
-        : "/api/admin/events";
+      const url = editId ? `/api/admin/events/${editId}` : "/api/admin/events";
       const method = editId ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
-        headers: authHeaders(),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(payload),
       });
       const data = await res.json();
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
       if (!res.ok) {
         setError(data.error ?? "Failed to save");
         return;
@@ -146,7 +134,7 @@ export default function AdminEventsPage() {
     try {
       const res = await fetch(`/api/admin/events/${id}`, {
         method: "DELETE",
-        headers: authHeaders(),
+        credentials: "include",
       });
       if (res.status === 401) {
         router.push("/admin/login");
@@ -155,12 +143,12 @@ export default function AdminEventsPage() {
       setDeleteId(null);
       fetchEvents();
     } catch {
-      // silently ignore
+      setDeleteId(null);
     }
   }
 
-  function handleLogout() {
-    localStorage.removeItem("admin_token");
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
     router.push("/admin/login");
   }
 

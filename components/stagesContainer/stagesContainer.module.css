@@ -1,6 +1,9 @@
 .container {
   background-color: var(--card);
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s;
 }
 
@@ -9,16 +12,16 @@
 }
 
 .img {
-  /* width: 100%; */
   width: 100%;
-  height: 65%;
-
+  height: 22rem;
+  flex-shrink: 0;
   object-fit: cover;
   opacity: 0.5;
   transition: all 0.3s;
 }
 
 .contentContainer {
+  flex: 1;
   padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
@@ -62,6 +65,10 @@
 }
 
 @media (max-width: 1024px) {
+  .img {
+    height: 20rem;
+  }
+
   .contentContainer {
     padding: 3rem 1.6rem;
   }
@@ -72,6 +79,10 @@
 }
 
 @media (max-width: 768px) {
+  .img {
+    height: 18rem;
+  }
+
   .contentContainer {
     padding: 2.4rem 1.4rem;
     gap: 1rem;
@@ -91,12 +102,16 @@
 }
 
 @media (max-width: 480px) {
+  .img {
+    height: 22rem;
+  }
+
   .contentContainer {
     padding: 2rem 1.2rem;
   }
 
   .hall {
-    font-size: 2.2rem; /* slightly bigger since it's full width now */
+    font-size: 2.2rem;
   }
 
   .city {

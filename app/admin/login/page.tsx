@@ -20,6 +20,7 @@ export default function AdminLoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ username, password }),
       });
 
@@ -29,7 +30,6 @@ export default function AdminLoginPage() {
         return;
       }
 
-      localStorage.setItem("admin_token", data.token);
       router.push("/admin/events");
     } catch {
       setError("Network error. Please try again.");
