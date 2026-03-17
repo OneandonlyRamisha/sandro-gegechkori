@@ -33,31 +33,29 @@
   gap: 1.2rem;
 }
 
-/* ---- subheader ---- */
+/* ---- grid layout ---- */
 
-.subheader {
-  font-size: 6.4rem;
-  line-height: 1.1;
-  font-weight: 400;
-}
-
-/* ---- bottom row ---- */
-
-.bottom {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
   border-top: 1px solid #1e1e2a;
   padding-top: 4rem;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
 .des {
   font-family: var(--font-ui);
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   color: var(--secondary-text);
   line-height: 1.8;
-  max-width: 40ch;
+  max-width: 48ch;
+  margin-bottom: 2rem;
 }
 
 /* ---- agent block ---- */
@@ -65,17 +63,25 @@
 .agent {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1.2rem;
-  flex-shrink: 0;
-  border-right: 3px solid var(--accent);
+  align-items: flex-start;
+  gap: 1.4rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 2.8rem;
+}
 
-  padding-right: 2.8rem;
+.logoWrap {
+  margin-bottom: 0.8rem;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
 }
 
 .agentLabel {
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 1.7rem;
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -84,19 +90,36 @@
 
 .agentName {
   font-family: var(--font-headers);
-  font-size: 3.6rem;
+  font-size: 4.1rem;
   font-weight: 400;
   color: var(--text);
-  text-align: right;
   line-height: 1.1;
 }
 
-.agentEmail {
+.agentCompany {
+  font-family: var(--font-ui);
+  font-size: 2.1rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.agentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: 2rem;
+  color: var(--secondary-text);
+  line-height: 1.7;
+}
+
+.agentLink {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-ui);
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: var(--secondary-text);
   border-bottom: 1px solid transparent;
   padding-bottom: 0.2rem;
@@ -105,16 +128,61 @@
     border-color 0.3s;
 }
 
-.agentEmail:hover {
+.agentLink:hover {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+/* ---- right: artist image ---- */
+
+.right {
+  display: flex;
+  align-items: stretch;
+}
+
+.imageWrap {
+  position: relative;
+
+  width: 100%;
+  min-height: 80rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+
+.artistImage {
+  object-fit: cover;
+  object-position: center calc(0% - 200px);
 }
 
 /* ---- responsive ---- */
 
 @media (max-width: 1024px) {
-  .subheader {
-    font-size: 5.2rem;
+  .grid {
+    gap: 3.2rem;
+  }
+
+  .des {
+    font-size: 1.9rem;
+  }
+
+  .agentName {
+    font-size: 3.6rem;
+  }
+
+  .agentCompany {
+    font-size: 1.8rem;
+  }
+
+  .agentDetails {
+    font-size: 1.7rem;
+  }
+
+  .agentLink {
+    font-size: 1.7rem;
+  }
+
+  .imageWrap {
+    min-height: 70rem;
   }
 }
 
@@ -126,42 +194,97 @@
     right: -1rem;
   }
 
-  .subheader {
-    font-size: 4rem;
-  }
-
-  .bottom {
-    flex-direction: column;
-    align-items: flex-start;
+  .grid {
+    grid-template-columns: 1fr;
     gap: 3.2rem;
   }
 
+  .des {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
+
   .agent {
-    align-items: flex-start;
-    border-right: none;
+    padding-left: 2rem;
+  }
 
-    padding-right: 0;
-    border-left: 3px solid var(--accent);
+  .logo {
+    width: 150px;
+  }
 
-    padding-left: 2.8rem;
+  .agentLabel {
+    font-size: 1.3rem;
   }
 
   .agentName {
-    text-align: left;
-    font-size: 2.8rem;
+    font-size: 3rem;
+  }
+
+  .agentCompany {
+    font-size: 1.6rem;
+  }
+
+  .agentDetails {
+    font-size: 1.8rem;
+  }
+
+  .agentLink {
+    font-size: 1.8rem;
+  }
+
+  .imageWrap {
+    min-height: 50rem;
+  }
+
+  .artistImage {
+    object-position: center calc(0% - 60px);
   }
 }
 
 @media (max-width: 480px) {
-  .subheader {
-    font-size: 3.2rem;
+  .section {
+    gap: 3.2rem;
   }
 
   .des {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .agent {
+    padding-left: 1.6rem;
+    gap: 1rem;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .agentLabel {
+    font-size: 1.1rem;
   }
 
   .agentName {
     font-size: 2.4rem;
+  }
+
+  .agentCompany {
+    font-size: 1.4rem;
+  }
+
+  .agentDetails {
+    font-size: 1.6rem;
+  }
+
+  .agentLink {
+    font-size: 1.6rem;
+  }
+
+  .imageWrap {
+    min-height: 40rem;
+  }
+
+  .artistImage {
+    object-position: center calc(0% - 40px);
   }
 }

@@ -35,7 +35,7 @@ export default function Biography() {
           <Image
             className={style.img}
             alt="Image of sandro sitting and looking at camera"
-            src={"/about.jpg"}
+            src={"/bio.jpg"}
             fill
           />
         </FadeUp>

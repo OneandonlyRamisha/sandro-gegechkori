@@ -295,8 +295,15 @@ export const WEBSITE_DATA = {
     des: "For concert bookings, artist management inquiries, and press requests, please reach out directly to the artist's management.",
     management: {
       label: "Artist Management",
-      name: "[name of the management]",
-      email: "booking@interlude-mgmt.com",
+      name: "Beatrice Altobelli",
+      company: "Conciertos Vitoria",
+      address: "Calle Fuencarral, 104 2º izda.",
+      city: "28004 Madrid, España",
+      phone: "+34 91 0182978",
+      mobile: "+34 607 775 543",
+      website: "www.conciertosvitoria.com",
+      email: "baltobelli@conciertosvitoria.com",
+      logo: "/logo.jpg",
     },
     socials: {
       instagram: "https://www.instagram.com/gegechkor/",
