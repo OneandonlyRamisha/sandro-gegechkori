@@ -32,3 +32,4 @@ export default function Home() {
 
 // ! hero and bio images need compress
 // ! Sadnro will send you 3 images and put them first compress and than put in hero bio and contact form
+// ! make it discoverable on ggoogle console
