@@ -22,7 +22,9 @@ export default async function Schedule() {
         {events.length === 0 ? (
           <FadeUp delay={0.15}>
             <div className={style.empty}>
-              <p className={style.emptyTitle}>No Upcoming Concerts</p>
+              <p className={style.emptyTitle}>
+                The Announcement Of The Upcoming Events Coming Soon
+              </p>
               <p className={style.emptyHint}>
                 New dates will be announced soon. Check back later.
               </p>
