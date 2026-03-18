@@ -38,7 +38,7 @@ export default function Hero() {
             {WEBSITE_DATA.heroSection.cta}
           </Link>
           <Link
-            href={"#performance"}
+            href={"#performances"}
             className={`${style.cta} ${style.secondaryCta}`}
           >
             <p>{WEBSITE_DATA.heroSection.secondaryCta}</p>
