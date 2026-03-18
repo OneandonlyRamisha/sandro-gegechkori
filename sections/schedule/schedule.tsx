@@ -5,8 +5,6 @@ import { connectDB } from "@/lib/db";
 import { Event } from "@/models/Event";
 import FadeUp from "@/components/animations/FadeUp";
 
-export const dynamic = "force-dynamic";
-
 export default async function Schedule() {
   await connectDB();
   const events = await Event.find().sort({ year: 1, day: 1 }).lean();

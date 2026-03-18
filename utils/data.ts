@@ -4,7 +4,7 @@ export const WEBSITE_DATA = {
     "Recognition",
     "Stages",
     "Discography",
-    "Performance",
+    "Performances",
     "Gallery",
     "Schedule",
     "Contact",
@@ -82,7 +82,7 @@ export const WEBSITE_DATA = {
 
   stages: {
     header: "stages",
-    subheader: "Where the music has played",
+    subheader: "Recent Concert Venues",
 
     stages: [
       {

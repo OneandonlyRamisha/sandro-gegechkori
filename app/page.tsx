@@ -10,6 +10,8 @@ import Schedule from "@/sections/schedule/schedule";
 import Stages from "@/sections/stages/stages";
 import Navigation from "@/components/navigation/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>

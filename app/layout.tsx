@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/hero.jpg",
+        url: "/heroImg.jpg",
         width: 1200,
         height: 630,
         alt: "Sandro Gegechkori — Georgian Concert Pianist",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sandro Gegechkori — Georgian Concert Pianist",
     description,
-    images: ["/hero.jpg"],
+    images: ["/heroImg.jpg"],
   },
   alternates: {
     canonical: SITE_URL,
