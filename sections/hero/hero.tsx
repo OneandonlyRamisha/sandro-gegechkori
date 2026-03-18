@@ -1,8 +1,7 @@
-import Link from "next/link";
 import style from "./hero.module.css";
-import { GoTriangleRight } from "react-icons/go";
 import { WEBSITE_DATA } from "@/utils/data";
 import FadeUp from "@/components/animations/FadeUp";
+import HeroCtAs from "./HeroCtAs";
 
 export default function Hero() {
   return (
@@ -30,21 +29,10 @@ export default function Hero() {
       </FadeUp>
 
       <FadeUp triggerOnLoad delay={0.7}>
-        <div className={style.ctaContainer}>
-          <Link
-            href={"#schedule"}
-            className={`${style.cta} ${style.primaryCta}`}
-          >
-            {WEBSITE_DATA.heroSection.cta}
-          </Link>
-          <Link
-            href={"#performances"}
-            className={`${style.cta} ${style.secondaryCta}`}
-          >
-            <p>{WEBSITE_DATA.heroSection.secondaryCta}</p>
-            {<GoTriangleRight className={style.icon} />}
-          </Link>
-        </div>
+        <HeroCtAs
+          cta={WEBSITE_DATA.heroSection.cta}
+          secondaryCta={WEBSITE_DATA.heroSection.secondaryCta}
+        />
       </FadeUp>
     </section>
   );
