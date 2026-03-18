@@ -7,7 +7,29 @@ import FadeUp from "@/components/animations/FadeUp";
 
 export default async function Schedule() {
   await connectDB();
-  const events = await Event.find().sort({ year: 1, day: 1 }).lean();
+
+  const MONTH_ORDER: Record<string, number> = {
+    Jan: 1,
+    Feb: 2,
+    Mar: 3,
+    Apr: 4,
+    May: 5,
+    Jun: 6,
+    Jul: 7,
+    Aug: 8,
+    Sep: 9,
+    Oct: 10,
+    Nov: 11,
+    Dec: 12,
+  };
+
+  const events = (await Event.find().lean()).sort((a, b) => {
+    if (a.year !== b.year) return a.year - b.year;
+    const mA = MONTH_ORDER[a.month] ?? 0;
+    const mB = MONTH_ORDER[b.month] ?? 0;
+    if (mA !== mB) return mA - mB;
+    return a.day - b.day;
+  });
 
   return (
     <section className={style.section} id="schedule">
