@@ -77,7 +77,7 @@ export const WEBSITE_DATA = {
 
     quote:
       "“The unequivocally gifted pianist who renders music with remarkable precision, refined artistry, and dazzling technical mastery”",
-    author: " – Arturo Reverter",
+    author: " – Bachtrack.com",
   },
 
   stages: {
