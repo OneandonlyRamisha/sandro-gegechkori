@@ -15,7 +15,6 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
-      <Navigation />
       <main>
         <Hero />
         <Biography />

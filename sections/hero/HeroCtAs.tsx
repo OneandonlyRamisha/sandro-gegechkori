@@ -1,5 +1,4 @@
-"use client";
-
+import Link from "next/link";
 import { GoTriangleRight } from "react-icons/go";
 import style from "./hero.module.css";
 
@@ -9,25 +8,15 @@ interface HeroCtAsProps {
 }
 
 export default function HeroCtAs({ cta, secondaryCta }: HeroCtAsProps) {
-  function scrollTo(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
     <div className={style.ctaContainer}>
-      <button
-        onClick={() => scrollTo("schedule")}
-        className={`${style.cta} ${style.primaryCta}`}
-      >
+      <Link href="/schedule" className={`${style.cta} ${style.primaryCta}`}>
         {cta}
-      </button>
-      <button
-        onClick={() => scrollTo("performances")}
-        className={`${style.cta} ${style.secondaryCta}`}
-      >
+      </Link>
+      <Link href="/performances" className={`${style.cta} ${style.secondaryCta}`}>
         <p>{secondaryCta}</p>
         <GoTriangleRight className={style.icon} />
-      </button>
+      </Link>
     </div>
   );
 }

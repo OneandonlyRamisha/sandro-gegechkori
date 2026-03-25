@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navigation from "@/components/navigation/navigation";
 import { Cormorant_Garamond, EB_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -116,6 +117,7 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} ${ebGaramond.variable} ${montserrat.variable}`}
       >
+        <Navigation />
         {children}
       </body>
     </html>

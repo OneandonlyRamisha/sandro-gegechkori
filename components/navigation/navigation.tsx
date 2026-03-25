@@ -9,12 +9,6 @@ import { motion } from "framer-motion";
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
-    e.preventDefault();
-    setIsOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
     <motion.header
       className={style.header}
@@ -23,7 +17,7 @@ export default function Navigation() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <nav className={style.nav}>
-        <Link href={"#"} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+        <Link href="/">
           <p className={style.logo}>SG</p>
         </Link>
 
@@ -31,9 +25,9 @@ export default function Navigation() {
           {WEBSITE_DATA.navigation.map((i) => (
             <li key={i}>
               <Link
-                href={"#" + i.toLowerCase()}
+                href={"/" + i.toLowerCase()}
                 className={style.navListItem}
-                onClick={(e) => handleNavClick(e, i.toLowerCase())}
+                onClick={() => setIsOpen(false)}
               >
                 {i}
               </Link>
