@@ -11,7 +11,7 @@ export const WEBSITE_DATA = {
   ],
 
   heroSection: {
-    occupation: "georgian concert pianist ",
+    occupation: "pianist ",
     header: "sandro gegechkori",
     quote:
       "“The most outstanding representative of the young generation of Georgian pianists” – Fundacion Occident",
@@ -330,7 +330,7 @@ export const WEBSITE_DATA = {
   },
   footer: {
     name: "Sandro Gegechkori",
-    tagline: "Georgian Concert Pianist",
+    tagline: "Pianist",
     links: [
       { label: "About", href: "#about" },
       { label: "Discography", href: "#media" },

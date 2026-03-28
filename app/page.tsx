@@ -23,7 +23,7 @@ export default function Home() {
         <Media />
         <Performance />
         <Gallery />
-        <Schedule />
+        {/* <Schedule /> */}
         <Contact />
       </main>
       <Footer />
