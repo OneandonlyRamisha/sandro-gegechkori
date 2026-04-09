@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/navigation/navigation";
 import { Cormorant_Garamond, EB_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
+import Footer from "@/sections/footer/footer";
 
 const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-headers",
@@ -21,12 +22,12 @@ const montserrat = Montserrat({
 const SITE_URL = "https://sandrogegechkori.com";
 
 const description =
-  "Official website of Sandro Gegechkori — Georgian concert pianist, Juilliard graduate, and winner of the Maria Canals International Competition. Performances across Europe, the Americas, and Asia.";
+  "Official website of Sandro Gegechkori — Pianist, Juilliard graduate, and winner of the Maria Canals International Competition. Performances across Europe, the Americas, and Asia.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sandro Gegechkori — Georgian Concert Pianist",
+    default: "Sandro Gegechkori — Pianist",
     template: "%s | Sandro Gegechkori",
   },
   description,
@@ -54,20 +55,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "Sandro Gegechkori",
-    title: "Sandro Gegechkori — Georgian Concert Pianist",
+    title: "Sandro Gegechkori — Pianist",
     description,
     images: [
       {
         url: "/heroImg.jpg",
         width: 1200,
         height: 630,
-        alt: "Sandro Gegechkori — Georgian Concert Pianist",
+        alt: "Sandro Gegechkori — Pianist",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sandro Gegechkori — Georgian Concert Pianist",
+    title: "Sandro Gegechkori — Pianist",
     description,
     images: ["/heroImg.jpg"],
   },
@@ -80,7 +81,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Sandro Gegechkori",
-  jobTitle: "Concert Pianist",
+  jobTitle: "Pianist",
   nationality: "Georgian",
   url: SITE_URL,
   alumniOf: {
@@ -119,6 +120,7 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   );
