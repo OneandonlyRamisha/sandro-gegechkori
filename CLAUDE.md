@@ -15,7 +15,7 @@ No test suite is configured.
 
 ## Project Overview
 
-Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Built with **Next.js 16 App Router**, **TypeScript**, **CSS Modules**, and **react-icons**. The entire public site uses hash-based anchor navigation — no routing. An admin dashboard at `/admin` manages concert events stored in MongoDB.
+Multi-page portfolio website for Georgian concert pianist Sandro Gegechkori. Built with **Next.js 16 App Router**, **TypeScript**, **CSS Modules**, and **react-icons**. The home page (`/`) renders all sections together. Each section also has its own standalone route via the `app/(sections)/` route group. An admin dashboard at `/admin` manages concert events stored in MongoDB.
 
 ---
 
@@ -47,16 +47,11 @@ Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Bu
 
 ## Page Structure
 
-`app/layout.tsx` is minimal — loads Google Fonts (Cormorant Garamond, EB Garamond, Montserrat) and applies CSS font variables. It does **not** render Navigation or Footer.
+`app/layout.tsx` loads Google Fonts (Cormorant Garamond, EB Garamond, Montserrat), applies CSS font variables, and renders `<Navigation />` and `<Footer />` around all pages.
 
-`app/page.tsx` renders the full public site:
-```
-<Navigation />   ← sticky header, "use client" for hamburger + smooth scroll
-<main>           ← all sections in order
-<Footer />
-```
+### Home page (`app/page.tsx`)
 
-`app/page.tsx` renders sections in this order:
+Renders all sections together with `export const dynamic = "force-dynamic"`:
 1. `Hero` — full-viewport background image, name, quote, two CTAs
 2. `Biography` — two-column: text left, `about.jpg` right
 3. `Recognition` — awards list + critic quote
@@ -67,6 +62,24 @@ Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Bu
 8. `Schedule` — upcoming concert list, **fetched from MongoDB at request time**
 9. `Contact` — management info with gold-accented agent block
 
+### Standalone section pages (`app/(sections)/`)
+
+Each section also has its own route via a `(sections)` route group:
+
+| Route | Page file | Renders |
+|-------|-----------|---------|
+| `/hero` | `app/(sections)/hero/page.tsx` | `<Hero />` |
+| `/biography` | `app/(sections)/biography/page.tsx` | `<Biography />` |
+| `/recognition` | `app/(sections)/recognition/page.tsx` | `<Recognition />` |
+| `/discography` | `app/(sections)/discography/page.tsx` | `<Media />` |
+| `/performances` | `app/(sections)/performances/page.tsx` | `<Performance />` |
+| `/gallery` | `app/(sections)/gallery/page.tsx` | `<Gallery />` |
+| `/schedule` | `app/(sections)/schedule/page.tsx` | `<Schedule />` |
+| `/contact` | `app/(sections)/contact/page.tsx` | `<Contact />` |
+| `/stages` | `app/(sections)/stages/page.tsx` | `<Stages />` |
+
+Each page imports and renders its corresponding section component. Pages that use dynamic data (e.g. `/schedule`) must export `dynamic = "force-dynamic"` to avoid stale caches.
+
 ---
 
 ## Architecture: Two Data Layers
@@ -75,7 +88,7 @@ Single-page portfolio website for Georgian concert pianist Sandro Gegechkori. Bu
 All bio, awards, stages, discography, performances, and gallery data lives in `utils/data.ts`. Server Components import `WEBSITE_DATA` directly — no API calls.
 
 ### Dynamic events (MongoDB)
-Concert schedule events are stored in MongoDB and managed via the admin dashboard. The `Schedule` section is an `async` Server Component with `export const dynamic = "force-dynamic"` that calls `connectDB()` and queries the `Event` model directly (no HTTP fetch).
+Concert schedule events are stored in MongoDB and managed via the admin dashboard. The `Schedule` section is an `async` Server Component that calls `connectDB()` and queries the `Event` model directly (no HTTP fetch). Any page rendering this component must export `dynamic = "force-dynamic"` to ensure fresh data on every request (both `app/page.tsx` and `app/(sections)/schedule/page.tsx`).
 
 ---
 
@@ -96,7 +109,7 @@ Each section is a Server Component (no `"use client"`) except Navigation. Each h
 | schedule     | `schedule`      | Schedule       |
 | contact      | `contact`       | Contact        |
 
-**Navigation anchor mapping:** Nav items in `WEBSITE_DATA.navigation` are lowercased to generate hrefs. Section IDs must match exactly.
+**Navigation:** On the home page, nav items use hash-based anchors (`/#biography`, etc.) for smooth scrolling. Each section is also accessible as a standalone page (`/biography`, `/schedule`, etc.).
 
 ---
 
